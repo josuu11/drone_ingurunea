@@ -1,40 +1,43 @@
-# DRONE BATEN KONTROLA OPENAI ETA ROS ERABILIZ GrAL PROIEKTUKO FITXATEGIAK
+# About sjtu_drone #
 
-Parrot AR.Drone 2.0 dronea erabiliz errefortzu bidezko ikasketak entrenatzeko simulazio ingurunea martxan jarri da OpenAI eta ROS erabiliz.
-Biltegi honen helburua inguruneak egiterako garaian sortu eta aldaturiko fitxategiak beste erabiltzaile batzuen esku uztea da, modu erabilgarri batean.
-Horrela, ingurunea sortzeko behar diren fitxategiak eskuragarri egongo dira edonork eginiko lan hau oinarri edo hasiera puntutzat erabili nahi badu.
+sjtu_drone is a quadrotor simulation program forked from ['tum_simulator'] (http://wiki.ros.org/tum_simulator) , which is developed with ROS + Gazebo. It is used for testing visual SLAM algorithms aiding with different sensors, such as IMU, sonar range finder and laser range finder. Here by 'sjtu', it means Shanghai Jiao Tong University. Currently, this program is used for testing algorithms for [UAV contest in SJTU](http://mediasoc.sjtu.edu.cn/wordpress)
 
-Biltegi honetan gordetako ingurunea instalatu eta erabili ahal izateko "ErabiltzaileGida-v1" gida sortu da, ingurunearen funtzionamendua eta fitxategi bakoitzaren erabilera azalduz. Gidarekin batea, eginiko lana aztertu nahi bada proiektuaren "Memoria" begira daiteke, bertan eginiko aldaketak modu sakonagoan azaltzen direlako. 
+# Requirements #
+This package is compatible with ROS Melodic version (Ubuntu 18.04). Existing versions on the internet support at most until Gazebo 7. After Gazebo 8.0, the API has gone significant changes; therefore, it was necessary to adapt the package to Gazebo 8.0+ API. As the default version of Gazebo coming with ROS Melodic is 7.0, it is suggested that do not use the full installation but the desktop installation.
+```
+$ sudo apt-get install ros-melodic-desktop
+```
+# Download and Compiling #
+```
+$ cd <catkin_ws>/src
+$ git clone https://github.com/tahsinkose/sjtu-drone.git
+$ cd <catkin_ws>
+$ catkin build
+```
 
-Ingurune honekin AR.Drone 2.0 dronea erabiliz, zeregin ezberdinak ikasteko entrenamendua simulatu daiteke, entrenamenduko ikasketa eta simulazioak aldatzeko aukera izanik. Gainera, Q-Learning eta SARSA Errefortzu bidezko ikasketa algoritmoak aplika daitezke, zeregin ezberdinetan dituzten jokaerak
-aztertzeko. 
+Here <catkin_ws> is the path of the catkin workspace. Please refer to the [tutorial](http://wiki.ros.org/ROS/Tutorials) about how to create a catkin workspace in ROS.
 
-Ingurunea bi pakete nagusitan banatzen da:
-  - catkin_ws: Entrenamendu eta ikasketa fitxategiak gordetzen dira
-  - simulation_ws: Simulazioa egiteko beharrezko fitxategi eta ereduak gordetzen dira
+# Run
+The simplest way is calling after you have built the workspace successfully.
 
---------------------------------------------------
+```
+$ cd <where you check out the code>
+$ source devel/setup.bash
+$ roslaunch sjtu_drone simple.launch
+```
+# Running with keyboard
+In second terminal:
 
-CONTROL OF A DRONE USING OPENAI AND ROS FINAL PROJECT FILES
-
-A simulation environment for training reinforcement studies using The Parrot AR.Drone 2.0 has been launched using OpenAI and ROS.
-The goal of this repository is to make available to other users, in a useful way, files that have been created and modified during the development of environments.
-In this way, the necessary files to create the environment will be available if anyone wants to use this work as a basis or starting point for its own project.
-
-For the installation and use of the environment stored in this repository, the "User-Guide_v1" guide has been created, explaining the operation of the environment and the use of each file. In line with the guide, if you want to analyze the work done, you can look at the "Memory" of the project, because the changes made to it are explained in a more deep way.
-
-With this environment, using the AR.Drone 2.0 drone, different tasks can be learn by simulating trainings, allowing the user to modify the training parameters and the simulation enviroment. In addition, Q-Learning and SARSA Reinforcement Learning algorithms can be applied, to examine their behavior in different tasks.
+```
+$ rosrun sjtu_drone drone_keyboard
+```
 
 
-The environment is divided into two main packages:
-- catkin_ws: Training and learning files are stored.
-- simulation_ws: The necessary files and models to perform the simulation are stored.
-
-
------------------------------------------------
-
-Egilea / Author: Josu Leunda Irazustabarrena
-
-Azken eguneraketa / Last updated: 12/09/2022
-
------------------------------------------------
+# Read sensor data from ROS topics #
+One can use [rqt_gui](http://wiki.ros.org/rqt_gui) to have an extensive amount of utilities for topic visualization and manipulation. Some of the useful topics reside below.
+```
+forward looking camera :  /drone/front_camera/image_raw
+downward looking camera: /drone/down_camera/image_raw
+sonar data:  /drone/sonar
+laser range data: /drone/laser
+```
