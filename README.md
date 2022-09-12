@@ -33,8 +33,8 @@ The environment is divided into two main packages:
 
 -----------------------------------------------
 
-Egilea/Author: Josu Leunda Irazustabarrena
+Egilea / Author: Josu Leunda Irazustabarrena
 
-Azken eguneraketa/Last updated: 12/09/2022
+Azken eguneraketa / Last updated: 12/09/2022
 
 -----------------------------------------------
