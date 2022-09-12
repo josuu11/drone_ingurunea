@@ -1,6 +1,0 @@
-<launch>
-    <!-- This version uses the openai_ros environments -->
-    <rosparam command="load" file="$(find josudrone)/config/config_xyz.yaml" />
-    <!-- Launch the training system -->
-    <node pkg="josudrone" name="parrotdrone_goto_qlearn" type="hasi.py" output="screen"/>
-</launch>
