@@ -1,0 +1,12 @@
+drone: #namespace
+    task_and_robot_environment_name: 'Zirkuitoa-v0'
+    ros_ws_abspath: "/home/josu/simulation_ws"
+    
+    #qlearn parameters
+    alpha: 0.9
+    gamma: 0.9
+    epsilon: 0.40
+    epsilon_discount: 1.0
+    nepisodes: 1900
+    nsteps: 1200
+
